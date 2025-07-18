@@ -12,12 +12,16 @@ class WebPage:
         return self.link
     def print_HTML(self):
         print(self.get_HTML())
-    def set_HTML(self, link):
-        self.HTML = requests.get(link).text
+    def set_HTML(self, link=None):
+        if link == None:
+            self.HTML = requests.get(self.get_link()).text
+        else:
+            self.HTML = requests.get(link).text
     def test(self):
         self.set_HTML(self.get_link())
         self.print_HTML()
 if __name__ == "__main__":
     Test = WebPage("Test", 'https://w3schools.com/python/demopage.htm')
     #Test.test()
+    Test.set_HTML()
     Test.print_HTML()
